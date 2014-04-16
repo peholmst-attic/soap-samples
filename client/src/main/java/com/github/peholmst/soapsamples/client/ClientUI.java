@@ -4,6 +4,7 @@ import com.github.peholmst.soapsamples.server.Contact;
 import com.github.peholmst.soapsamples.server.ContactWS;
 import com.github.peholmst.soapsamples.server.ContactWSService;
 import com.github.peholmst.soapsamples.server.Gender;
+import com.github.peholmst.soapsamples.server.NoSuchContactException_Exception;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
@@ -144,6 +145,14 @@ public class ClientUI extends UI {
     }
 
     private void delete(ClickEvent evt) {
+        final Contact selected = (Contact) contacts.getValue();
+        try {
+            getWebService().deleteByUuid(selected.getUuid());
+        } catch (NoSuchContactException_Exception ex) {
+            Notification.show("The contact was not found");
+        } finally {
+            contactsContainer.removeItem(selected);
+        }
     }
 
 }
