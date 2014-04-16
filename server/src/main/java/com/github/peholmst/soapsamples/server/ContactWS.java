@@ -85,7 +85,7 @@ public class ContactWS {
                 Contact contact = create();
                 contact.setFirstName(firstName);
                 contact.setLastName(lastName);
-                contact.setGender(Gender.FEMALE);
+                contact.setGender(Gender.MALE);
             }
         }
     }
