@@ -95,6 +95,9 @@ public class ClientUI extends UI {
             binder = new BeanFieldGroup<>(Contact.class);
             
             setCaption("Contact details");
+            setModal(true);
+            center();
+            
             final FormLayout form = new FormLayout();
             form.addComponent(firstName = new TextField("First name"));
             form.addComponent(lastName = new TextField("Last name"));
@@ -102,7 +105,7 @@ public class ClientUI extends UI {
             form.addComponent(new Button("Save", (event) -> {
                 try {
                     binder.commit();
-                    saveHandler.save(binder.getItemDataSource().getBean());
+                    saveHandler.save(this, binder.getItemDataSource().getBean());
                 } catch (FieldGroup.CommitException ex) {
                     Notification.show("Could not commit form");
                 }
@@ -115,7 +118,7 @@ public class ClientUI extends UI {
 
         @FunctionalInterface
         public interface SaveHandler {
-            void save(Contact contact);
+            void save(ContactWindow window, Contact contact);
         }
     }
 
