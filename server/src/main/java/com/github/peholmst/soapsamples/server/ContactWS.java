@@ -3,6 +3,7 @@ package com.github.peholmst.soapsamples.server;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
 import javax.ejb.Singleton;
@@ -62,6 +63,31 @@ public class ContactWS {
         }
         contactsMap.put(contact.getUuid().toString(), contact);
         return contact;
+    }
+    
+    @PostConstruct
+    void init() {
+        /*
+         * This method is very ugly. It was late and I was running out of time.
+         */
+        final String[] femaleFirstNames = {"Sarah", "Jane", "Marilyn", "Eve", "Alice", "Ann"};
+        final String[] maleFirstNames = {"Joe", "John", "Bob", "Mark", "Adam", "Maxwell"};
+        final String[] lastNames = {"Smith", "Doe", "Cool", "Smart", "Twain", "Anderson"};
+        
+        for (String lastName : lastNames) {
+            for (String firstName : femaleFirstNames) {
+                Contact contact = create();
+                contact.setFirstName(firstName);
+                contact.setLastName(lastName);
+                contact.setGender(Gender.FEMALE);
+            }
+            for (String firstName : maleFirstNames) {
+                Contact contact = create();
+                contact.setFirstName(firstName);
+                contact.setLastName(lastName);
+                contact.setGender(Gender.FEMALE);
+            }
+        }
     }
 
 }
