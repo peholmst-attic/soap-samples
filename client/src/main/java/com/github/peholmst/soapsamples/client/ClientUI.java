@@ -99,7 +99,7 @@ public class ClientUI extends UI {
             setCaption("Contact details");
             setModal(true);
             center();
-            
+
             final FormLayout form = new FormLayout();
             form.addComponent(firstName = new TextField("First name"));
             form.addComponent(lastName = new TextField("Last name"));
@@ -120,6 +120,7 @@ public class ClientUI extends UI {
 
         @FunctionalInterface
         public interface SaveHandler {
+
             void save(ContactWindow window, Contact contact);
         }
     }
@@ -140,10 +141,21 @@ public class ClientUI extends UI {
 
     private void create(ClickEvent evt) {
         Contact contact = getWebService().create();
-        contactsContainer.addBean(contact);        
+        contactsContainer.addBean(contact);
     }
 
     private void edit(ClickEvent evt) {
+        final Contact selected = (Contact) contacts.getValue();
+        getUI().addWindow(new ContactWindow(selected, (window, contact) -> {
+            try {
+                final Contact updated = getWebService().update(contact);
+                contactsContainer.removeItem(contact);
+                contactsContainer.addBean(updated);
+                window.close();
+            } catch (NoSuchContactException_Exception ex) {
+                Notification.show("The contact was not found");
+            }
+        }));
     }
 
     private void delete(ClickEvent evt) {
