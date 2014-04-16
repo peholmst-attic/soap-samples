@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Contact {
 
     @XmlAttribute(required = true)
-    private UUID uuid;
+    private String uuid;
     @XmlElement(required = true)
     private String firstName;
     @XmlElement(required = true)
@@ -21,14 +21,14 @@ public class Contact {
     private Gender gender;
 
     public Contact() {
-        this.uuid = UUID.randomUUID();
+        this.uuid = UUID.randomUUID().toString();
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }    
 
-    protected void setUuid(UUID uuid) {
+    protected void setUuid(String uuid) {
         this.uuid = uuid;
     }
     

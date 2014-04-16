@@ -52,16 +52,16 @@ public class ContactWS {
     @WebMethod(operationName = "create")
     public synchronized Contact create() {
         final Contact contact = new Contact();
-        contactsMap.put(contact.getUuid().toString(), contact);
+        contactsMap.put(contact.getUuid(), contact);
         return contact;
     }
 
     @WebMethod(operationName = "update")
     public synchronized Contact update(@WebParam(name = "contact") final Contact contact) throws NoSuchContactException {
-        if (!contactsMap.containsKey(contact.getUuid().toString())) {
+        if (!contactsMap.containsKey(contact.getUuid())) {
             throw new NoSuchContactException();
         }
-        contactsMap.put(contact.getUuid().toString(), contact);
+        contactsMap.put(contact.getUuid(), contact);
         return contact;
     }
     
