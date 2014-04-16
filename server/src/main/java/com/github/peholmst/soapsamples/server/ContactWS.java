@@ -17,12 +17,18 @@ import javax.jws.WebService;
 @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class ContactWS {
-    
+
     private final Map<String, Contact> contactsMap = new HashMap<>();
 
     @WebMethod(operationName = "findAll")
-    public synchronized Collection<Contact> findAll() {
-        return contactsMap.values();
+    public Collection<Contact> findAll() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+        }
+        synchronized (this) {
+            return contactsMap.values();
+        }
     }
 
     @WebMethod(operationName = "findByUuid")
@@ -34,21 +40,21 @@ public class ContactWS {
             return contact;
         }
     }
-    
+
     @WebMethod(operationName = "deleteByUuid")
     public synchronized void deleteByUuid(@WebParam(name = "uuid") final String uuid) throws NoSuchContactException {
         if (contactsMap.remove(uuid) == null) {
             throw new NoSuchContactException();
         }
     }
-    
+
     @WebMethod(operationName = "create")
     public synchronized Contact create() {
         final Contact contact = new Contact();
         contactsMap.put(contact.getUuid().toString(), contact);
         return contact;
     }
-    
+
     @WebMethod(operationName = "update")
     public synchronized Contact update(@WebParam(name = "contact") final Contact contact) throws NoSuchContactException {
         if (!contactsMap.containsKey(contact.getUuid().toString())) {
@@ -57,5 +63,5 @@ public class ContactWS {
         contactsMap.put(contact.getUuid().toString(), contact);
         return contact;
     }
-    
+
 }
