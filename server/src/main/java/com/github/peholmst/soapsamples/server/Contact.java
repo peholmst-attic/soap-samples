@@ -1,6 +1,5 @@
 package com.github.peholmst.soapsamples.server;
 
-import java.util.UUID;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -19,16 +18,15 @@ public class Contact {
     private String lastName;
     @XmlElement
     private Gender gender;
-
+    
     public Contact() {
-        this.uuid = UUID.randomUUID().toString();
     }
 
     public String getUuid() {
         return uuid;
     }    
 
-    protected void setUuid(String uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
     
@@ -55,6 +53,10 @@ public class Contact {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return String.format("Contact[uuid=%s, firstName=%s, lastName=%s, gender=%s]", uuid, firstName, lastName, gender);
+    }
+        
 }
