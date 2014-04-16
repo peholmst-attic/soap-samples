@@ -1,6 +1,8 @@
 package com.github.peholmst.soapsamples.client;
 
 import com.github.peholmst.soapsamples.server.Contact;
+import com.github.peholmst.soapsamples.server.ContactWS;
+import com.github.peholmst.soapsamples.server.ContactWSService;
 import com.github.peholmst.soapsamples.server.Gender;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -30,6 +32,7 @@ public class ClientUI extends UI {
     public static class Servlet extends VaadinServlet {
     }
 
+    private ContactWSService contactWSService = new ContactWSService();
     private Table contacts;
     private BeanItemContainer<Contact> contactsContainer;
     private Button refresh;
@@ -91,7 +94,7 @@ public class ClientUI extends UI {
 
         public ContactWindow(Contact contact, SaveHandler saveHandler) {
             binder = new BeanFieldGroup<>(Contact.class);
-            
+
             setCaption("Contact details");
             setModal(true);
             center();
@@ -120,10 +123,21 @@ public class ClientUI extends UI {
         }
     }
 
-    private void refresh(ClickEvent evt) {
+    private ContactWS getWebService() {
+        return contactWSService.getContactWSPort();
     }
 
-    private void create(ClickEvent evt) {        
+    private void refresh(ClickEvent evt) {
+        try {
+            contactsContainer.removeAllItems();
+            contactsContainer.addAll(getWebService().findAll());
+            Notification.show("Retrieved " + contactsContainer.size() + " contact(s)");
+        } finally {
+            refresh.setEnabled(true);
+        }
+    }
+
+    private void create(ClickEvent evt) {
     }
 
     private void edit(ClickEvent evt) {
