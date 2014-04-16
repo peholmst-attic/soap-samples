@@ -66,7 +66,7 @@ public class ClientUI extends UI {
         edit = new Button("Edit", this::edit);
         edit.setDisableOnClick(true);
 
-        delete = new Button("Delete", this::edit);
+        delete = new Button("Delete", this::delete);
         delete.setDisableOnClick(true);
 
         HorizontalLayout buttons = new HorizontalLayout(refresh, create, edit, delete);
