@@ -3,7 +3,6 @@ package com.github.peholmst.soapsamples.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://server.soapsamples.peholmst.github.com/}contact" minOccurs="0"/>
+ *         &lt;element name="updatedContact" type="{http://server.soapsamples.peholmst.github.com/}contact" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "updateResponse", propOrder = {
-    "_return"
+    "updatedContact"
 })
 public class UpdateResponse {
 
-    @XmlElement(name = "return")
-    protected Contact _return;
+    protected Contact updatedContact;
 
     /**
-     * Gets the value of the return property.
+     * Gets the value of the updatedContact property.
      * 
      * @return
      *     possible object is
      *     {@link Contact }
      *     
      */
-    public Contact getReturn() {
-        return _return;
+    public Contact getUpdatedContact() {
+        return updatedContact;
     }
 
     /**
-     * Sets the value of the return property.
+     * Sets the value of the updatedContact property.
      * 
      * @param value
      *     allowed object is
      *     {@link Contact }
      *     
      */
-    public void setReturn(Contact value) {
-        this._return = value;
+    public void setUpdatedContact(Contact value) {
+        this.updatedContact = value;
     }
 
 }

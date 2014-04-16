@@ -3,7 +3,6 @@ package com.github.peholmst.soapsamples.server;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://server.soapsamples.peholmst.github.com/}contact" minOccurs="0"/>
+ *         &lt;element name="contactToUpdate" type="{http://server.soapsamples.peholmst.github.com/}contact" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +27,34 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "update", propOrder = {
-    "contact"
+    "contactToUpdate"
 })
 public class Update {
 
-    @XmlElement(namespace = "http://server.soapsamples.peholmst.github.com/")
-    protected Contact contact;
+    protected Contact contactToUpdate;
 
     /**
-     * Gets the value of the contact property.
+     * Gets the value of the contactToUpdate property.
      * 
      * @return
      *     possible object is
      *     {@link Contact }
      *     
      */
-    public Contact getContact() {
-        return contact;
+    public Contact getContactToUpdate() {
+        return contactToUpdate;
     }
 
     /**
-     * Sets the value of the contact property.
+     * Sets the value of the contactToUpdate property.
      * 
      * @param value
      *     allowed object is
      *     {@link Contact }
      *     
      */
-    public void setContact(Contact value) {
-        this.contact = value;
+    public void setContactToUpdate(Contact value) {
+        this.contactToUpdate = value;
     }
 
 }

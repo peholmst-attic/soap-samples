@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://server.soapsamples.peholmst.github.com/}contact" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{http://server.soapsamples.peholmst.github.com/}contact" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,26 +30,26 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "findAllResponse", propOrder = {
-    "_return"
+    "contact"
 })
 public class FindAllResponse {
 
-    @XmlElement(name = "return")
-    protected List<Contact> _return;
+    @XmlElement(namespace = "http://server.soapsamples.peholmst.github.com/")
+    protected List<Contact> contact;
 
     /**
-     * Gets the value of the return property.
+     * Gets the value of the contact property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the return property.
+     * This is why there is not a <CODE>set</CODE> method for the contact property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getReturn().add(newItem);
+     *    getContact().add(newItem);
      * </pre>
      * 
      * 
@@ -59,11 +59,11 @@ public class FindAllResponse {
      * 
      * 
      */
-    public List<Contact> getReturn() {
-        if (_return == null) {
-            _return = new ArrayList<Contact>();
+    public List<Contact> getContact() {
+        if (contact == null) {
+            contact = new ArrayList<Contact>();
         }
-        return this._return;
+        return this.contact;
     }
 
 }

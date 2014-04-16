@@ -28,21 +28,21 @@ public interface ContactWS {
 
     /**
      * 
-     * @param contact
+     * @param contactToUpdate
      * @return
      *     returns com.github.peholmst.soapsamples.server.Contact
      * @throws NoSuchContactException_Exception
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "updatedContact", targetNamespace = "")
     @RequestWrapper(localName = "update", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.Update")
     @ResponseWrapper(localName = "updateResponse", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.UpdateResponse")
     @Action(input = "http://server.soapsamples.peholmst.github.com/ContactWS/updateRequest", output = "http://server.soapsamples.peholmst.github.com/ContactWS/updateResponse", fault = {
         @FaultAction(className = NoSuchContactException_Exception.class, value = "http://server.soapsamples.peholmst.github.com/ContactWS/update/Fault/NoSuchContactException")
     })
     public Contact update(
-        @WebParam(name = "contact", targetNamespace = "http://server.soapsamples.peholmst.github.com/")
-        Contact contact)
+        @WebParam(name = "contactToUpdate", targetNamespace = "")
+        Contact contactToUpdate)
         throws NoSuchContactException_Exception
     ;
 
@@ -52,7 +52,7 @@ public interface ContactWS {
      *     returns com.github.peholmst.soapsamples.server.Contact
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "createdContact", targetNamespace = "")
     @RequestWrapper(localName = "create", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.Create")
     @ResponseWrapper(localName = "createResponse", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.CreateResponse")
     @Action(input = "http://server.soapsamples.peholmst.github.com/ContactWS/createRequest", output = "http://server.soapsamples.peholmst.github.com/ContactWS/createResponse")
@@ -64,7 +64,7 @@ public interface ContactWS {
      *     returns java.util.List<com.github.peholmst.soapsamples.server.Contact>
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "contact", targetNamespace = "http://server.soapsamples.peholmst.github.com/")
     @RequestWrapper(localName = "findAll", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.FindAll")
     @ResponseWrapper(localName = "findAllResponse", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.FindAllResponse")
     @Action(input = "http://server.soapsamples.peholmst.github.com/ContactWS/findAllRequest", output = "http://server.soapsamples.peholmst.github.com/ContactWS/findAllResponse")
@@ -78,7 +78,7 @@ public interface ContactWS {
      * @throws NoSuchContactException_Exception
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
+    @WebResult(name = "contact", targetNamespace = "http://server.soapsamples.peholmst.github.com/")
     @RequestWrapper(localName = "findByUuid", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.FindByUuid")
     @ResponseWrapper(localName = "findByUuidResponse", targetNamespace = "http://server.soapsamples.peholmst.github.com/", className = "com.github.peholmst.soapsamples.server.FindByUuidResponse")
     @Action(input = "http://server.soapsamples.peholmst.github.com/ContactWS/findByUuidRequest", output = "http://server.soapsamples.peholmst.github.com/ContactWS/findByUuidResponse", fault = {

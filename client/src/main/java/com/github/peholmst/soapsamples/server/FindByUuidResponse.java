@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://server.soapsamples.peholmst.github.com/}contact" minOccurs="0"/>
+ *         &lt;element ref="{http://server.soapsamples.peholmst.github.com/}contact" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "findByUuidResponse", propOrder = {
-    "_return"
+    "contact"
 })
 public class FindByUuidResponse {
 
-    @XmlElement(name = "return")
-    protected Contact _return;
+    @XmlElement(namespace = "http://server.soapsamples.peholmst.github.com/")
+    protected Contact contact;
 
     /**
-     * Gets the value of the return property.
+     * Gets the value of the contact property.
      * 
      * @return
      *     possible object is
      *     {@link Contact }
      *     
      */
-    public Contact getReturn() {
-        return _return;
+    public Contact getContact() {
+        return contact;
     }
 
     /**
-     * Sets the value of the return property.
+     * Sets the value of the contact property.
      * 
      * @param value
      *     allowed object is
      *     {@link Contact }
      *     
      */
-    public void setReturn(Contact value) {
-        this._return = value;
+    public void setContact(Contact value) {
+        this.contact = value;
     }
 
 }
