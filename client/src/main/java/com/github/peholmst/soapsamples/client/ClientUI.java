@@ -139,6 +139,8 @@ public class ClientUI extends UI {
     }
 
     private void create(ClickEvent evt) {
+        Contact contact = getWebService().create();
+        contactsContainer.addBean(contact);        
     }
 
     private void edit(ClickEvent evt) {
